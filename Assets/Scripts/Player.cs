@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float speedBoost;
     public float timeRoll;
 
-    public List<Transform> pointWeapon;
+    public List<Transform> weaponPoints;
     [SerializeField] private int originalHealth;
     private int health;
     private float m_timeRoll;
@@ -92,11 +92,11 @@ public class Player : MonoBehaviour
 
     public void CreateWeapon(GameObject weapon)
     {
-        if(weapon != null && pointWeapon != null && pointWeapon.Count > 0)
+        if(weapon != null && weaponPoints != null && weaponPoints.Count > 0)
         {
-            GameObject weaponNew = Instantiate(weapon, pointWeapon[0].position, Quaternion.identity);
+            GameObject weaponNew = Instantiate(weapon, weaponPoints[0].position, Quaternion.identity);
             weaponNew.transform.SetParent(transform);
-            pointWeapon.RemoveAt(0);
+            weaponPoints.RemoveAt(0);
         }
     }
 }
