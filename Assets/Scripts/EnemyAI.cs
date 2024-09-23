@@ -118,7 +118,7 @@ public class EnemyAI : MonoBehaviour
 
     void MoveToTarget()
     {
-        // neeus Coroutine đã chạy thì tắt và chạy lại
+        // nếu Coroutine đã chạy thì tắt và chạy lại
         if (moveCoroutine != null)
         {
             StopCoroutine(moveCoroutine);
@@ -158,7 +158,7 @@ public class EnemyAI : MonoBehaviour
             {
                 currentWP++;
             }
-
+            
             yield return null;
         }
 
@@ -221,10 +221,13 @@ public class EnemyAI : MonoBehaviour
         }
         
     }
+
+    // call in animation
     public void ResetAnimationHit()
     {
         animator.SetBool("Hit", false);
     }
+
     public void DestroyGameObject()
     {
         Destroy(gameObject);

@@ -11,7 +11,7 @@ public class Collection : MonoBehaviour
         Player player = col.gameObject.GetComponent<Player>();
         if(player != null)
         {
-            player.WeaponCreate(weapon);
+            player.CreateWeapon(weapon);
             Destroy(gameObject);
         }
     }

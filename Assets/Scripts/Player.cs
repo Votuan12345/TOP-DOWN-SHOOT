@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float moveSpeed;
-    public float moreSpeed;
+    public float speedBoost;
     public float timeRoll;
 
     public List<Transform> pointWeapon;
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
         if((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && m_timeRoll <= 0) 
         {
-            moveSpeed = (originalSpeed + moreSpeed);
+            moveSpeed = (originalSpeed + speedBoost);
             m_timeRoll = timeRoll;
             isRoll = true;
             animator.SetBool("Roll", true);
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
-        health = Mathf.Clamp(health + value, 0, 100);
+        health = Mathf.Clamp(health + value, 0, originalHealth);
         GameGUIManager.instance.ShowHealthText(health, originalHealth);
         GameGUIManager.instance.ShowHealthImage(health, originalHealth);
         if(health <= 0)
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void WeaponCreate(GameObject weapon)
+    public void CreateWeapon(GameObject weapon)
     {
         if(weapon != null && pointWeapon != null && pointWeapon.Count > 0)
         {

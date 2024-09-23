@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
 
     public int enemyMax;
     private int enemyCount;
-    public List<GameObject> enemys = new List<GameObject>();
+    public List<GameObject> enemies = new List<GameObject>();
     public float spawnEnemyTime;
     private int kill; // số lượng quái bị hạ
     private bool isSpawnEnemy;
     public float spawnEnemyPos;
     public int batch; // từng đợt
-    public float differentmoreTime;
+    public float difficultyTimer;
 
     public Texture2D crosshairCursor;
     private bool isGameOver;
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         isSpawnEnemy = true;
         enemyCount = 0;
         StartCoroutine(spawnEnemy());
-        InvokeRepeating("DifferentMore", differentmoreTime, differentmoreTime);
+        InvokeRepeating("BoostDifficulty", difficultyTimer, difficultyTimer);
     }
 
     private void Update()
@@ -78,16 +78,16 @@ public class GameManager : MonoBehaviour
             isSpawnEnemy = true;
         }
         
-        if(enemys != null && enemys.Count > 0 && isSpawnEnemy)
+        if(enemies != null && enemies.Count > 0 && isSpawnEnemy)
         {
-            int index = Random.Range(0, enemys.Count);
+            int index = Random.Range(0, enemies.Count);
             // 55, 54
             int randomPosX = Random.Range(-1, 1);
             int randomPosY = Random.Range(-1, 1);
             if(randomPosX == 0) randomPosX = 1;
             if(randomPosY == 0) randomPosY = 1;
 
-            GameObject enemyGameObject = Instantiate(enemys[index], new Vector3(randomPosX, randomPosY, 0) * spawnEnemyPos, Quaternion.identity);
+            GameObject enemyGameObject = Instantiate(enemies[index], new Vector3(randomPosX, randomPosY, 0) * spawnEnemyPos, Quaternion.identity);
             enemyGameObject.GetComponent<EnemyAI>().Id = enemyCount;
 
             enemyCount++;
@@ -107,7 +107,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void DifferentMore()
+    // Invoke
+    private void BoostDifficulty()
     {
         if(spawnEnemyTime > 3)
         {

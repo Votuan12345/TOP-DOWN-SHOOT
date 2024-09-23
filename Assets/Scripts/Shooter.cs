@@ -45,7 +45,6 @@ public class Shooter : MonoBehaviour
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
-        // tính vector giữa súng và con trỏ chuột => xác định hướng bắn
         Vector2 lookDir = mousePos - transform.position;
 
         // góc
