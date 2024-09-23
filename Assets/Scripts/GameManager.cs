@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         Kill = 0;
         isSpawnEnemy = true;
         enemyCount = 0;
-        StartCoroutine(spawnEnemy());
+        StartCoroutine(SpawnEnemy());
         InvokeRepeating("BoostDifficulty", difficultyTimer, difficultyTimer);
     }
 
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator spawnEnemy()
+    IEnumerator SpawnEnemy()
     {
         
         if((enemyCount-kill) >= batch)
@@ -97,11 +97,11 @@ public class GameManager : MonoBehaviour
         if (enemyCount >= enemyMax)
         {
             isSpawnEnemy = false;
-            StopCoroutine(spawnEnemy());
+            StopCoroutine(SpawnEnemy());
         }
         else
         {
-            StartCoroutine(spawnEnemy());
+            StartCoroutine(SpawnEnemy());
         }
 
 
