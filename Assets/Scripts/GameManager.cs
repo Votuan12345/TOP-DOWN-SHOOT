@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeMouse()
     {
-        Cursor.SetCursor(crosshairCursor, new Vector2(crosshairCursor.width / 2, crosshairCursor.height / 2), CursorMode.Auto);
+        Cursor.SetCursor(crosshairCursor, new Vector2(crosshairCursor.width / 2, crosshairCursor.height), CursorMode.Auto);
     }
 
     public void ResetMouse()
